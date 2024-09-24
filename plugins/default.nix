@@ -5,7 +5,7 @@
     ./telescope.nix
   ];
 
-  programs.nixvim.plugins = {
+  plugins = {
     auto-session = {
       enable = true;
     };

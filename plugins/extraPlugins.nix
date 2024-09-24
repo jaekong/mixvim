@@ -13,13 +13,11 @@ let
   xcode-nvim = (fromGitHub "v3.5.1" "wojciech-kulik" "xcodebuild.nvim" "sha256-AUYMOasLldv0WAlNe8qOWpgDNx31v7hxFbhncuTg7Hs=");
 in
 {
-  config = {
-    programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with pkgs.vimPlugins; [
       xcode-nvim
       camelcasemotion
       nui-nvim
       smart-splits-nvim
       neorepl-nvim
     ];
-  };
 }

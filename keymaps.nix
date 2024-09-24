@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  programs.nixvim.keymaps = [
+  keymaps = [
     {
       key = "w";
       action = "<Plug>CamelCaseMotion_w";

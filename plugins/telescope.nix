@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  programs.nixvim.plugins.telescope = {
+  plugins.telescope = {
     enable = true;
     extensions = {
       media-files.enable = true;
