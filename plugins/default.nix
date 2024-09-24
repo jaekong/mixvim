@@ -223,6 +223,7 @@
         dimming = { alpha = 0.6; };
       };
     };
+    web-devicons.enable = true;
     which-key = {
       enable = true;
     };
