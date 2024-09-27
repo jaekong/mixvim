@@ -1,3 +1,7 @@
+{ config, lib, ... }:
+let
+  xcodeEnable = config.mixvim.xcode.enable;
+in
 {
   imports = [
     ./cmp.nix
@@ -13,6 +17,7 @@
       enable = true;
     };
     better-escape.enable = true;
+    bufdelete.enable = true;
     conform-nvim = {
       enable = true;
       settings = {
@@ -48,16 +53,10 @@
     dap = {
       enable = true;
       adapters = {
-        executables.lldb = {
+        executables.lldb = (lib.mkIf xcodeEnable {
           command = "xcrun";
           args = [ "lldb-dap" ];
-        };
-      };
-      configurations = {
-        # swift = [{
-        #   request = "launch";
-        #   type = "lldb";
-        # }];
+        });
       };
       extensions = {
         dap-ui.enable = true;
@@ -105,13 +104,13 @@
           }
       '';
       servers = {
-        sourcekit = {
+        sourcekit = (lib.mkIf xcodeEnable {
           enable = true;
           cmd = [ "xcrun" "sourcekit-lsp" ];
           extraOptions = {
             single_file_support = true;
           };
-        };
+        });
         nil-ls.enable = true;
         lua-ls = {
           enable = true;

@@ -1,3 +1,8 @@
+{ config, lib, ... }:
+let
+  xcodeEnable = config.mixvim.xcode.enable;
+  rpcEnable = config.mixvim.rpc.enable;
+in
 {
   config = {
     opts = {
@@ -37,7 +42,11 @@
       language en_US
       set noshowmode
     '';
-    extraConfigLua = builtins.readFile ./neovim.lua;
+    extraConfigLua = lib.strings.concatStrings [
+      (if xcodeEnable then (builtins.readFile ./luaConfig/xcodebuild.lua) else "")
+      (if rpcEnable then (builtins.readFile ./luaConfig/rpc.lua) else "")
+      (builtins.readFile ./neovim.lua)
+    ];
 
     performance = {
       byteCompileLua = {

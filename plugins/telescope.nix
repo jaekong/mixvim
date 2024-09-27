@@ -14,35 +14,35 @@
     keymaps = {
       "<leader>ff" = {
         action = "fd";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader>fg" = {
         action = "live_grep";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader><leader>" = {
         action = "buffers";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader>f:" = {
         action = "commands";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader>fq" = {
         action = "quickfix";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader>fl" = {
         action = "lsp_definitions";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<leader>fd" = {
         action = "diagnostics";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
       "<C-f>" = { 
         action = "find_files";
-        mode = config.nvim.genericModes;
+        mode = config.mixvim.genericModes;
       };
     };
   };

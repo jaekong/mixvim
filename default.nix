@@ -1,12 +1,20 @@
-{ lib, ... }:
+{ lib, mixvim, ... }:
 {
-  options.nvim.genericModes = lib.mkOption {
+  options.mixvim.genericModes = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [ "n" "v" "s" "o" ];
   };
-  options.nvim.commandModes = lib.mkOption {
+  options.mixvim.commandModes = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [ "c" ];
+  };
+  options.mixvim.xcode.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = mixvim.xcode.enable;
+  };
+  options.mixvim.rpc.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = mixvim.rpc.enable;
   };
   imports = [
     ./plugins
