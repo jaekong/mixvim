@@ -39,7 +39,7 @@ in
     };
 
     extraConfigVim = ''
-      language en_US
+      language en_US.UTF-8
       set noshowmode
     '';
     extraConfigLua = lib.strings.concatStrings [
