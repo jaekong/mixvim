@@ -32,6 +32,7 @@
             module = import ./default.nix {
               lib = pkgs.lib;
               mixvim = args;
+              inherit system;
             };
           };
           nixvimPackage = nixvimSource.makeNixvimWithModule nixvimModule;

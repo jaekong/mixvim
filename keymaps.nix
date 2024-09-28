@@ -3,6 +3,7 @@ let
   genericModes = config.mixvim.genericModes;
   commandModes = config.mixvim.commandModes;
   xcodeEnable = config.mixvim.xcode.enable;
+  system = config.mixvim.system;
 in
 {
   keymaps = lib.mkMerge [
@@ -140,13 +141,13 @@ in
       options.remap = false;
     }
     {
-      key = "<M-d>";
+      key = "<D-d>";
       action = "<Cmd>rightb:vsplit<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<M-S-d>";
+      key = "<D-S-d>";
       action = "<Cmd>rightb:split<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
@@ -181,25 +182,25 @@ in
 
     # Cmd + up / down
     {
-      key = "<C-home>";
+      key = "<D-up>";
       action = "gg";
       mode = genericModes;
       options.remap = false;
     }
     {
-      key = "<C-home>";
+      key = "<D-up>";
       action = "<esc>ggi";
       mode = "i";
       options.remap = false;
     }
     {
-      key = "<C-end>";
+      key = "<D-down>";
       action = "G";
       mode = genericModes;
       options.remap = false;
     }
     {
-      key = "<C-end>";
+      key = "<D-down>";
       action = "<esc>Gi";
       mode = "i";
       options.remap = false;
@@ -207,13 +208,13 @@ in
 
     # Cmd + backspace
     {
-      key = "<A-S-backspace>";
+      key = "<D-backspace>";
       action.__raw = "function()vim.g.if_is_at_start('norm! d0', 'norm! d^')end";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<A-S-backspace>";
+      key = "<D-backspace>";
       action = ''&cedit.'d0'.'<c-c><c-r>=execute("redraw")<cr>' '';
       mode = commandModes;
       options.remap = false;
@@ -237,26 +238,26 @@ in
 
     # Cmd + left / right
     {
-      key = "<C-left>";
+      key = "<D-left>";
       action.__raw = "function()vim.g.if_is_at_start('norm! 0', 'norm! ^')end";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<C-left>";
+      key = "<D-left>";
       action = ''&cedit.'0'.'<c-c><c-r>=execute("redraw")<cr>' '';
       mode = commandModes;
       options.remap = false;
       options.expr = true;
     }
     {
-      key = "<C-right>";
+      key = "<D-right>";
       action.__raw = "function()vim.cmd('norm! $l')end";
       mode = genericModes ++ commandModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<C-right>";
+      key = "<D-right>";
       action = ''&cedit.'$'.'<c-c><c-r>=execute("redraw")<cr>' '';
       mode = commandModes;
       options.remap = false;
@@ -315,7 +316,7 @@ in
 
     # Cmd + W
     {
-      key = "<M-w>";
+      key = "<D-w>";
       action = "<Cmd>Bdelete<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
@@ -323,7 +324,7 @@ in
 
     # Cmd + Shift + W
     {
-      key = "<M-q>";
+      key = "<D-W>";
       action = "<Cmd>qa<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
@@ -331,15 +332,22 @@ in
 
     # Cmd + Option + Left / Right
     {
-      key = "<M-,>";
+      key = "<D-,>";
       action = "<Cmd>tabprevious<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<M-.>";
+      key = "<D-.>";
       action = "<Cmd>tabnext<CR>";
       mode = genericModes ++ [ "i" ];
+      options.remap = false;
+    }
+
+    {
+      key = "asdf";
+      action = "<Cmd>echo '${system}'<cr>";
+      mode = genericModes;
       options.remap = false;
     }
   ]
