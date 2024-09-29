@@ -299,6 +299,12 @@ in
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
+    {
+      key = "<D-s>";
+      action = "<Cmd>w<CR>";
+      mode = genericModes ++ [ "i" ];
+      options.remap = false;
+    }
 
     # Ctrl + C
     {

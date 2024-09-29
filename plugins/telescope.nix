@@ -44,6 +44,10 @@
         action = "find_files";
         mode = config.mixvim.genericModes;
       };
+      "<D-f>" = {
+        action = "find_files";
+        mode = config.mixvim.genericModes;
+      };
     };
   };
 }
