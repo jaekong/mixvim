@@ -18,6 +18,7 @@ in
     };
     better-escape.enable = true;
     bufdelete.enable = true;
+    ccc.enable = true;
     conform-nvim = {
       enable = true;
       settings = {
