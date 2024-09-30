@@ -33,9 +33,6 @@ in
         };
       };
     };
-    comment = {
-      enable = true;
-    };
     dashboard = {
       enable = true;
       settings = {
