@@ -350,13 +350,13 @@ in
 
     # Cmd + Option + Left / Right
     {
-      key = "<D-,>";
+      key = "<D-A-C-left>";
       action = "<Cmd>tabprevious<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<D-.>";
+      key = "<D-A-C-right>";
       action = "<Cmd>tabnext<CR>";
       mode = genericModes ++ [ "i" ];
       options.remap = false;

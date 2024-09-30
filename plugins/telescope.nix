@@ -20,7 +20,7 @@
         action = "live_grep";
         mode = config.mixvim.genericModes;
       };
-      "<leader><leader>" = {
+      "<leader>fb" = {
         action = "buffers";
         mode = config.mixvim.genericModes;
       };
@@ -40,12 +40,16 @@
         action = "diagnostics";
         mode = config.mixvim.genericModes;
       };
-      "<C-f>" = { 
+      "<leader><leader>" = { 
         action = "find_files";
         mode = config.mixvim.genericModes;
       };
       "<D-f>" = {
         action = "find_files";
+        mode = config.mixvim.genericModes ++ [ "i" ];
+      };
+      "?" = {
+        action = "live_grep";
         mode = config.mixvim.genericModes;
       };
     };
