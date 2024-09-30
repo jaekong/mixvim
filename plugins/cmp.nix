@@ -70,7 +70,7 @@
             winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
           };
         };
-            # preselect = "cmp.PreselectMode.None";
+        preselect = "cmp.PreselectMode.None";
         enabled.__raw = ''
           function()
             local context = require 'cmp.config.context'
