@@ -33,6 +33,15 @@ in
           };
         };
       };
+      luaConfig.post = ''
+      vim.api.nvim_create_user_command(
+        "Format",
+        function(args)
+          require("conform").format({ bufnr = args.buf })
+          end,
+          {}
+      )
+      '';
     };
     dashboard = {
       enable = true;
@@ -62,6 +71,9 @@ in
     };
     helpview.enable = true;
     hex.enable = true;
+    inc-rename = {
+      enable = true;
+    };
     indent-blankline = {
       enable = true;
       settings = {
@@ -70,6 +82,13 @@ in
           filetypes = [ "TelescopePrompt" "TelescopeResults" "help" "lspinfo" "checkhealth" "dashboard" ];
         };
       };
+      luaConfig.post = ''
+      local hooks = require("ibl.hooks")
+      hooks.register(
+        hooks.type.WHITESPACE,
+        hooks.builtin.hide_first_tab_indent_level
+      )
+      '';
     };
     indent-o-matic = {
       enable = true;
@@ -134,11 +153,14 @@ in
         };
       };
     };
-    lspsaga = {
+    luasnip = {
       enable = true;
-      lightbulb = {
-        enable = false;
-      };
+      fromSnipmate = [
+        {
+          paths = ./luasnip/swift.snippets;
+          include = [ "swift" ];
+        }
+      ];
     };
     markview = {
       enable = true;
@@ -202,7 +224,7 @@ in
                   require('statuscol.builtin').lnumfunc
                 '';
               }
-              " "
+              "  "
             ];
           }
         ];
@@ -214,19 +236,15 @@ in
         highlight.enable = true;
       };
     };
-    twilight = {
-      enable = true;
-      settings = {
-        dimming = { alpha = 0.6; };
-      };
-    };
+    # twilight = {
+    #   enable = true;
+    #   settings = {
+    #     dimming = { alpha = 0.6; };
+    #   };
+    # };
     web-devicons.enable = true;
     which-key = {
       enable = true;
-    };
-    wilder = {
-      enable = false;
-      modes = [ ":" "/" "?" ];
     };
     yazi = {
       enable = false;

@@ -21,6 +21,7 @@
         ":" = {
           sources = [
             { name = "cmdline"; }
+            { name = "nvim_lsp_document_symbol"; }
           ];
         };
       };
@@ -42,6 +43,7 @@
             '';
           }
           { name = "nvim_lua"; }
+          { name = "luasnip"; }
         ];
         mapping = {
           "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
@@ -71,6 +73,11 @@
           };
         };
         preselect = "cmp.PreselectMode.None";
+        snippet.expand = ''
+        function(args)
+          require('luasnip').lsp_expand(args.body)
+        end
+        '';
         enabled.__raw = ''
           function()
             local context = require 'cmp.config.context'
@@ -103,5 +110,6 @@
     # cmp-nvim-lua.enable = true;
     # cmp-buffer.enable = true;
     # cmp-nvim-lsp-document-symbol.enable = true;
+    # cmp_luasnip.enable = true;
   };
 }

@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  genericModes = config.mixvim.genericModes;
+in
 {
   plugins.telescope = {
     enable = true;
@@ -14,43 +17,55 @@
     keymaps = {
       "<leader>ff" = {
         action = "fd";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader>fg" = {
         action = "live_grep";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader>fb" = {
         action = "buffers";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader>f:" = {
         action = "commands";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader>fq" = {
         action = "quickfix";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader>fl" = {
         action = "lsp_definitions";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
+      };
+      "<leader>z" = {
+        action = "undo";
+        mode = genericModes;
       };
       "<leader>fd" = {
         action = "diagnostics";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
       "<leader><leader>" = { 
         action = "find_files";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
+      };
+      "<leader>gc" = {
+        action = "git_commits";
+        mode = genericModes;
+      };
+      "<leader>gs" = {
+        action = "git_status";
+        mode = genericModes;
       };
       "<D-f>" = {
         action = "find_files";
-        mode = config.mixvim.genericModes ++ [ "i" ];
+        mode = genericModes ++ [ "i" ];
       };
       "?" = {
         action = "live_grep";
-        mode = config.mixvim.genericModes;
+        mode = genericModes;
       };
     };
   };

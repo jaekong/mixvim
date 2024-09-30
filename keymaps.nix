@@ -56,6 +56,12 @@ in
       '';
       mode = genericModes;
     }
+    {
+      key = "K";
+      action.__raw = "require('hover').hover";
+      mode = genericModes;
+      options.remap = false;
+    }
     # {
     #   key = "<Tab>";
     #   action.__raw = ''
@@ -324,12 +330,12 @@ in
     {
       key = "<D-z>";
       action = "<cmd>undo<cr>";
-      mode = genericModes;
+      mode = genericModes ++ [ "i" ];
     }
     {
       key = "<D-S-z>";
       action = "<cmd>redo<cr>";
-      mode = genericModes;
+      mode = genericModes ++ [ "i" ];
     }
 
     # Cmd + W

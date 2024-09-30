@@ -51,6 +51,17 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+require('hover').setup {
+  init = function ()
+    require('hover.providers.lsp')
+  end,
+  preview_opts = {
+    border = 'single'
+  },
+  mouse_providers = { 'LSP' },
+  mouse_delay = 1000
+}
+
 vim.g.is_at_start = function()
   local col = vim.fn.col('.') - 1
   local line = vim.fn.getline('.')
