@@ -309,15 +309,27 @@ in
     # Ctrl + C
     {
       key = "<C-/>";
-      action = "gcc";
-      mode = genericModes;
+      action = "<cmd>normal gcc<cr>";
+      mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
-      key = "<C-/>";
-      action = "<esc>gcci";
-      mode = "i";
+      key = "<D-/>";
+      action = "<cmd>normal gcc<cr>";
+      mode = genericModes ++ [ "i" ];
       options.remap = false;
+    }
+
+    # Cmd + Z / Cmd + Shfit + Z
+    {
+      key = "<D-z>";
+      action = "<cmd>undo<cr>";
+      mode = genericModes;
+    }
+    {
+      key = "<D-S-z>";
+      action = "<cmd>redo<cr>";
+      mode = genericModes;
     }
 
     # Cmd + W
