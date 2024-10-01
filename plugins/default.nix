@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   xcodeEnable = config.mixvim.xcode.enable;
 in
@@ -19,17 +19,22 @@ in
     better-escape.enable = true;
     bufdelete.enable = true;
     ccc.enable = true;
+    comment.enable = true;
     conform-nvim = {
       enable = true;
       settings = {
         lsp_format = "fallback";
         formatters_by_ft = {
           swift = [ "swift_format" ];
+          nix = [ "nixfmt" ];
         };
         formatters = {
           swift_format = {
             command = "xcrun";
             prepend_args = "swift-format";
+          };
+          nixfmt = {
+            command = lib.getExe pkgs.nixfmt-rfc-style;
           };
         };
       };
@@ -38,8 +43,8 @@ in
         "Format",
         function(args)
           require("conform").format({ bufnr = args.buf })
-          end,
-          {}
+        end,
+        {}
       )
       '';
     };
