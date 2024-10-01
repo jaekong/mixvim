@@ -183,6 +183,9 @@ in
         disable_filetype = [ "TelescopePrompt" "TelescopeResults" "help" "lspinfo" "checkhealth" "dashboard" ];
       };
     };
+    nvim-tree = {
+      enable = true;
+    };
     otter = {
       enable = true;
     };
