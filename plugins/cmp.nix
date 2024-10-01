@@ -23,6 +23,13 @@
             { name = "cmdline"; }
             { name = "nvim_lsp_document_symbol"; }
           ];
+          mapping = {
+            "<up>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<down>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<CR>" = "cmp.mapping.confirm({ select=true })";
+          };
         };
       };
       filetype = {};

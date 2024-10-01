@@ -25,6 +25,8 @@ in
       splitbelow = true;
       splitright = true;
 
+      wildmode = "";
+
       wrap = false;
 
       langmap = "ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz,ㅃQ,ㅉW,ㄸE,ㄲR,ㅆT";
@@ -41,6 +43,7 @@ in
     extraConfigVim = ''
       language en_US.UTF-8
       set noshowmode
+      set nowildmenu
     '';
     extraConfigLua = lib.strings.concatStrings [
       (if xcodeEnable then (builtins.readFile ./luaConfig/xcodebuild.lua) else "")
