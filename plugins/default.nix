@@ -174,9 +174,6 @@ in
     markview = {
       enable = true;
     };
-    neo-tree = {
-      enable = true;
-    };
     nix.enable = true;
     notify = {
       enable = true;
@@ -189,9 +186,11 @@ in
     };
     nvim-tree = {
       enable = true;
+      diagnostics.enable = true;
+      trash.cmd = "rip";
     };
     otter = {
-      enable = true;
+      enable = false;
     };
     sandwich = {
       enable = true;
@@ -236,7 +235,7 @@ in
                   require('statuscol.builtin').lnumfunc
                 '';
               }
-              "  "
+              " ▏ "
             ];
           }
         ];
@@ -248,12 +247,6 @@ in
         highlight.enable = true;
       };
     };
-    # twilight = {
-    #   enable = true;
-    #   settings = {
-    #     dimming = { alpha = 0.6; };
-    #   };
-    # };
     web-devicons.enable = true;
     which-key = {
       enable = true;

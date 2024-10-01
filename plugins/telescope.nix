@@ -16,7 +16,12 @@ in
     };
     settings = {
       defaults = {
-        wrap_results = true;
+      };
+      pickers = {
+        diagnostics = {
+          wrap_results = true;
+          line_width = "full";
+        };
       };
     };
     keymaps = {
