@@ -82,14 +82,19 @@ vim.g.if_is_at_start = function (cmd_true, cmd_false)
   end
 end
 
-vim.g.select_line = function()
-  if vim.api.nvim_get_mode()["mode"] == "v" then
-    vim.api.nvim_feedkeys("+", "v", false);
+vim.g.select_move = function(direction)
+  local mode = vim.api.nvim_get_mode()["mode"]
+
+  if direction == "^" and vim.g.is_at_start() then
+    direction = "0"
+  end
+
+  if mode == "v" or mode == "V" then
+    vim.api.nvim_feedkeys(direction, "v", false)
+  elseif mode == "i" then
+    vim.api.nvim_feedkeys("^[", "i", false)
+    vim.cmd("normal v" .. direction)
   else
-    local currentLine = vim.fn.line(".")
-    local currentLineEndColumn = vim.fn.line("$") - 1
-    vim.fn.setpos("\'<", {0, currentLine, 0, 0})
-    vim.fn.setpos("\'>", {0, currentLine, currentLineEndColumn, 0})
-    vim.api.nvim_feedkeys("v", "n", false);
+    vim.cmd("normal v" .. direction)
   end
 end

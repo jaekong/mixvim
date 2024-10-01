@@ -42,15 +42,11 @@ in
       key = "V";
       action.__raw = ''
       function()
-        if vim.api.nvim_get_mode()["mode"] == "v" then
-          vim.api.nvim_feedkeys("+", "v", false);
-          vim.api.nvim_feedkeys("$", "v", false);
+        local mode = vim.api.nvim_get_mode()["mode"]
+        if mode == "v" or mode == "V" then
+          vim.api.nvim_feedkeys("j", "v", false);
         else
-          local currentLine = vim.fn.line(".")
-          local currentLineEndColumn = vim.fn.line("$") - 1
-          vim.fn.setpos("\'<", {0, currentLine, 0, 0})
-          vim.fn.setpos("\'>", {0, currentLine, currentLineEndColumn, 0})
-          vim.api.nvim_feedkeys("gv", "n", false);
+          vim.api.nvim_feedkeys("V", "n", false);
         end
       end
       '';
@@ -93,7 +89,7 @@ in
 
     {
       key = "\\";
-      action = "<cmd>Neotree toggle<cr>";
+      action = "<cmd>NvimTreeToggle<cr>";
       mode = genericModes;
     }
 
@@ -286,13 +282,13 @@ in
     }
     {
       key = "<A-right>";
-      action.__raw = ''function()vim.cmd [[execute "norm! \<Plug>CamelCaseMotion_w"]]end'';
+      action.__raw = ''function()vim.cmd [[execute "norm! \<Plug>CamelCaseMotion_e"]]end'';
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
       key = "<A-right>";
-      action = ''&cedit.'w'.'<c-c><c-r>=execute("redraw")<cr>' '';
+      action = ''&cedit.'e'.'<c-c><c-r>=execute("redraw")<cr>' '';
       mode = commandModes;
       options.remap = false;
       options.expr = true;
@@ -312,7 +308,90 @@ in
       options.remap = false;
     }
 
-    # Ctrl + C
+    # Cmd + C
+    {
+      key = "<D-c>";
+      action = "<cmd>normal \"+y<cr>";
+      mode = genericModes;
+      options.remap = false;
+    }
+
+    # Shift + Movement
+    {
+      key = "<S-up>";
+      action.__raw = "function()vim.g.select_move('k');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-down>";
+      action.__raw = "function()vim.g.select_move('j');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-left>";
+      action.__raw = "function()vim.g.select_move('h');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-right>";
+      action.__raw = "function()vim.g.select_move('l');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-A-down>";
+      action.__raw = "function()vim.g.select_move('}');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-A-up>";
+      action.__raw = "function()vim.g.select_move('{');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-A-left>";
+      action.__raw = "function()vim.g.select_move('b');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-A-right>";
+      action.__raw = "function()vim.g.select_move('e');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-D-down>";
+      action.__raw = "function()vim.g.select_move('G');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-D-up>";
+      action.__raw = "function()vim.g.select_move('gg');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-D-left>";
+      action.__raw = "function()vim.g.select_move('^');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+    {
+      key = "<S-D-right>";
+      action.__raw = "function()vim.g.select_move('$l');end";
+      mode = genericModes ++ ["i"];
+      options.remap = false;
+    }
+
+
+    # Cmd / Ctrl + /
     {
       key = "<C-/>";
       action = "<cmd>normal gcc<cr>";
@@ -365,13 +444,6 @@ in
       key = "<D-A-C-right>";
       action = "<Cmd>tabnext<CR>";
       mode = genericModes ++ [ "i" ];
-      options.remap = false;
-    }
-
-    {
-      key = "asdf";
-      action = "<Cmd>echo '${system}'<cr>";
-      mode = genericModes;
       options.remap = false;
     }
   ]
