@@ -14,6 +14,11 @@ in
         enable = true;
       };
     };
+    settings = {
+      defaults = {
+        wrap_results = true;
+      };
+    };
     keymaps = {
       "<leader>ff" = {
         action = "fd";
