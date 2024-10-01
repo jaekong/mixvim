@@ -78,7 +78,7 @@ xcodebuild.setup({
     code_coverage = {
       enabled = false,
       file_pattern = "*.swift",
-     
+
       covered_sign = "",
       partially_covered_sign = "┃",
       not_covered_sign = "┃",
@@ -97,6 +97,22 @@ xcodebuild.setup({
         enabled = true,
         guess_target = true,
         should_update_project = function(path)
+          local hasProjectFile = vim.fn.filereadable("./Project.swift") == 1
+          local hasTuistDir = vim.fn.finddir("Tuist") ~= ""
+          if hasProjectFile and hasTuistDir then
+            local handle
+            local generated = function (status)
+              if status == 0 then
+                vim.notify("Tuist Project regenerated.", vim.log.levels.INFO)
+              else
+                vim.notify("Tuist project generation failed.", vim.log.levels.ERROR)
+              end
+            end
+            handle = vim.uv.spawn("tuist", { args = { "generate" } }, generated)
+
+            return false
+          end
+
           return true
         end,
       },
@@ -104,6 +120,22 @@ xcodebuild.setup({
         enabled = true,
         guess_target = true,
         should_update_project = function(path)
+          local hasProjectFile = vim.fn.filereadable("./Project.swift") == 1
+          local hasTuistDir = vim.fn.finddir("Tuist") ~= ""
+          if hasProjectFile and hasTuistDir then
+            local handle
+            local generated = function (status)
+              if status == 0 then
+                vim.notify("Tuist Project regenerated.", vim.log.levels.INFO)
+              else
+                vim.notify("Tuist project generation failed.", vim.log.levels.ERROR)
+              end
+            end
+            handle = vim.uv.spawn("tuist", { args = { "generate" } }, generated)
+
+            return false
+          end
+
           return true
         end,
       },
@@ -111,6 +143,22 @@ xcodebuild.setup({
         enabled = true,
         guess_target = true,
         should_update_project = function(path)
+          local hasProjectFile = vim.fn.filereadable("./Project.swift") == 1
+          local hasTuistDir = vim.fn.finddir("Tuist") ~= ""
+          if hasProjectFile and hasTuistDir then
+            local handle
+            local generated = function (status)
+              if status == 0 then
+                vim.notify("Tuist Project regenerated.", vim.log.levels.INFO)
+              else
+                vim.notify("Tuist project generation failed.", vim.log.levels.ERROR)
+              end
+            end
+            handle = vim.uv.spawn("tuist", { args = { "generate" } }, generated)
+
+            return false
+          end
+
           return true
         end,
       },
