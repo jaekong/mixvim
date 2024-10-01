@@ -43,23 +43,5 @@
   in {
     inherit withOptions;
     packages = forAllSystems ({ system, ... }: { default = withOptions.${system} { xcode.enable = false; rpc.enable = false; }; });
-
-    # packages = forAllSystems ({ pkgs, system }:
-    # let
-    # nixvimSource = nixvim.legacyPackages.${system};
-    #   nixvimModule = {
-    #     inherit pkgs;
-    #     module = import ./default.nix {
-    #       lib = pkgs.lib;
-    #       mixvim = {
-    #         xcode.enable = false;
-    #         rpc.enable = false;
-    #       };
-    #     };
-    #   };
-    #   nixvimPackage = nixvimSource.makeNixvimWithModule nixvimModule;
-    # in
-    # nixvimPackage
-    # );
   };
 }
