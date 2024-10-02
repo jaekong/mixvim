@@ -80,11 +80,11 @@ in
         variant = "main";
         styles.italic = false;
         highlight_groups = {
-          LineNrAbove.fg.__raw = "require('rose-pine.palette').muted";
-          LineNrBelow.fg.__raw = "require('rose-pine.palette').muted";
+          LineNrAbove.fg.__raw = "require('rose-pine.palette').highlight_med";
+          LineNrBelow.fg.__raw = "require('rose-pine.palette').highlight_med";
           LineNr = {
             fg.__raw = "require('rose-pine.palette').base";
-            bg.__raw = "require('rose-pine.palette').subtle";
+            bg.__raw = "require('rose-pine.palette').foam";
           };
           DiagnosticSignError = {
             bg.__raw = "require('rose-pine.palette').love";
