@@ -453,6 +453,18 @@ in
       action.__raw = "require('xcodebuild.integrations.dap').clear_console";
       mode = genericModes;
     }
+    {
+      key = "<D-.>";
+      action = "<cmd>XcodebuildCancel<cr>";
+      mode = genericModes;
+      options.remap = false;
+    }
+    {
+      key = "<D-r>";
+      action.__raw = "require('xcodebuild.integrations.dap').build_and_debug";
+      mode = genericModes;
+      options.remap = false;
+    }
   ])
   ];
 }
