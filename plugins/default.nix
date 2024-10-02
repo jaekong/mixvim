@@ -123,11 +123,11 @@ in
     lsp = {
       enable = true;
       capabilities = ''
-          capabilities.workspace = {
-            didChangeWatchedFiles = {
-              dynamicRegistration = true
-            }
+        capabilities.workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true
           }
+        }
       '';
       servers = {
         sourcekit = (lib.mkIf xcodeEnable {
@@ -225,20 +225,61 @@ in
       enable = true;
       settings = {
         relculright = true;
-        # TODO: add click handlers
         segments = [
           {
             text = [
-              " "
               {
                 __raw = ''
-                  require('statuscol.builtin').lnumfunc
+                function(args, segment)
+                  local bufferTypeIgnored = { "help" }
+                  local bufferType = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+                  if vim.list_contains(bufferTypeIgnored, bufferType) then
+                    return "%#LineNrAbove%# "
+                  end
+
+                  -- if segment.sign and segment.sign.wins[args.win].signs[args.lnum] then
+                  --   vim.notify(segment.sign.wins[args.win].signs[args.lnum])
+                  --   return "AAA"
+                  -- end
+                  
+                  -- local relnum = tostring(args.relnum)
+                  -- local len = string.len(relnum)
+                  -- local padLen = 2 - len
+                  -- local pad = string.rep(" ", padLen)
+                  -- local hlGroup 
+                  -- 
+                  -- if args.relnum == 0 then
+                  --   hlGroup = "LineNr"
+                  -- elseif args.relnum > 0 then
+                  --   hlGroup = "LineNrAbove"
+                  -- else
+                  --   hlGroup = "LineNrBelow"
+                  -- end
+
+                  return " " .. require('statuscol.builtin').lnumfunc(args, segment) .. " %#LineNrAbove#% ▏ "
+                end
                 '';
               }
-              " ▏ "
             ];
+            sign = {
+              name = [ ".*" ];
+              auto = false;
+              wrap = false;
+              fillchar = " ";
+            };
           }
         ];
+        clickhandlers = {
+          Lnum = "require('statuscol.builtin').lnum_click";
+          FoldClose = "require('statuscol.builtin').foldclose_click";
+          FoldOpen = "require('statuscol.builtin').foldopen_click";
+          FoldOther = "require('statuscol.builtin').foldother_click";
+          DapBreakpointRejected = "require('statuscol.builtin').toggle_breakpoint";
+          DapBreakpoint = "require('statuscol.builtin').toggle_breakpoint";
+          DapBreakpointCondition = "require('statuscol.builtin').toggle_breakpoint";
+          "diagnostic/signs" = "require('statuscol.builtin').diagnostic_click";
+          gitsigns = "require('statuscol.builtin').gitsigns_click";
+        };
       };
     };
     treesitter = {
