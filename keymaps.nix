@@ -282,13 +282,13 @@ in
     }
     {
       key = "<A-right>";
-      action.__raw = ''function()vim.cmd [[execute "norm! \<Plug>CamelCaseMotion_e"]]end'';
+      action.__raw = ''function()vim.cmd [[execute "norm! \<Plug>CamelCaseMotion_el"]]end'';
       mode = genericModes ++ [ "i" ];
       options.remap = false;
     }
     {
       key = "<A-right>";
-      action = ''&cedit.'e'.'<c-c><c-r>=execute("redraw")<cr>' '';
+      action = ''&cedit.'el'.'<c-c><c-r>=execute("redraw")<cr>' '';
       mode = commandModes;
       options.remap = false;
       options.expr = true;
@@ -361,7 +361,7 @@ in
     }
     {
       key = "<S-A-right>";
-      action.__raw = "function()vim.g.select_move('e');end";
+      action.__raw = "function()vim.g.select_move('el');end";
       mode = genericModes ++ ["i"];
       options.remap = false;
     }
