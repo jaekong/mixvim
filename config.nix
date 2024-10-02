@@ -6,34 +6,29 @@ in
 {
   config = {
     opts = {
-      tabstop = 8;
-      softtabstop = 2;
-      shiftwidth = 2;
+      autoindent = true;
       expandtab = true;
       smartindent = true;
-      autoindent = true;
-      virtualedit = "onemore";
 
-      relativenumber = true;
-      numberwidth = 4;
-      signcolumn = "number";
-
-      ignorecase = true;
-
-      termguicolors = true;
-
+      shiftwidth = 2;
+      softtabstop = 2;
+      tabstop = 8;
+      
+      eadirection = "both";
       splitbelow = true;
       splitright = true;
 
-      wildmode = "";
+      numberwidth = 4;
+      relativenumber = true;
+      signcolumn = "number";
 
-      wrap = false;
-
+      fillchars.eob = " ";
+      ignorecase = true;
       langmap = "ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz,ㅃQ,ㅉW,ㄸE,ㄲR,ㅆT";
-
-      fillchars = {
-        eob = " ";
-      };
+      termguicolors = true;
+      virtualedit = "onemore";
+      wildmode = "";
+      wrap = false;
     };
 
     globals = {
@@ -42,9 +37,12 @@ in
 
     extraConfigVim = ''
       language en_US.UTF-8
+
+      set equalalways
       set noshowmode
       set nowildmenu
-    '';
+      '';
+
     extraConfigLua = lib.strings.concatStrings [
       (if xcodeEnable then (builtins.readFile ./luaConfig/xcodebuild.lua) else "")
       (if rpcEnable then (builtins.readFile ./luaConfig/rpc.lua) else "")
