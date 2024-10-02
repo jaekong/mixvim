@@ -3,7 +3,7 @@ let
   genericModes = config.mixvim.genericModes;
   commandModes = config.mixvim.commandModes;
   xcodeEnable = config.mixvim.xcode.enable;
-  system = config.mixvim.system;
+  # system = config.mixvim.system;
 in
 {
   keymaps = lib.mkMerge [
