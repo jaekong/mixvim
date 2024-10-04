@@ -317,6 +317,11 @@ in
     web-devicons.enable = true;
     which-key = {
       enable = true;
+      settings.filter.__raw = ''
+      function(mapping)
+        return mapping.desc and mapping.desc ~= ""
+      end
+      '';
     };
     yazi = {
       enable = false;
