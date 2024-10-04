@@ -9,13 +9,14 @@
             { name = "buffer"; }
             { name = "nvim_lsp_document_symbol"; }
           ];
-          mapping = {
-            "<up>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<down>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<CR>" = "cmp.mapping.confirm({ select=true })";
-          };
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          # mapping = {
+          #   "<up>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          #   "<down>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          #   "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          #   "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          #   "<CR>" = "cmp.mapping.confirm({ select=true })";
+          # };
         };
 
         ":" = {
@@ -23,13 +24,14 @@
             { name = "cmdline"; }
             { name = "nvim_lsp_document_symbol"; }
           ];
-          mapping = {
-            "<up>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<down>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<CR>" = "cmp.mapping.confirm({ select=true })";
-          };
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          # mapping = {
+          #   "<up>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          #   "<down>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          #   "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          #   "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          #   "<CR>" = "cmp.mapping.confirm({ select=true })";
+          # };
         };
       };
       filetype = {};
@@ -58,7 +60,25 @@
           "<C-up>" = "cmp.mapping.scroll_docs(-4)";
           "<C-down>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
-          "<CR>" = "cmp.mapping.confirm({ select=true })";
+          "<CR>" = ''
+          cmp.mapping({
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              else
+                fallback()
+              end
+            end,
+          })
+          '';
           "<down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           "<up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
         };
@@ -71,7 +91,7 @@
           completion = {
             winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
               scrollbar = false;
-              sidePadding = 0;
+              sidePadding = 1;
               border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
           };
           settings.documentation = {
