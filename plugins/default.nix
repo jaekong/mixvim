@@ -71,7 +71,33 @@ in
         });
       };
       extensions = {
-        dap-ui.enable = true;
+        dap-ui = {
+          enable = true;
+          controls = {
+            enabled = true;
+            element = "repl";
+          };
+          floating = {
+            border = "single";
+            mappings.close = [ "q" "esc" ];
+          };
+          icons = {
+            collapsed = "";
+            expanded = "";
+            current_frame = "";
+          };
+          layouts = [
+            {
+              elements = [
+                { id = "repl"; size = 0.34; }
+                { id = "breakpoints"; size = 0.33; }
+                { id = "console"; size = 0.33; }
+              ];
+              position = "bottom";
+              size = 10;
+            }
+          ];
+        };
       };
     };
     helpview.enable = true;

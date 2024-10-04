@@ -204,30 +204,30 @@ dap.configurations.swift[1].postRunCommands = {
       "breakpoint delete cpp_exception",
 }
 
-dapui.setup({
-  controls = {
-    element = "repl",
-    enabled = true,
-  },
-  floating = {
-    border = "single",
-    mappings = {
-      close = { "q", "<Esc>" },
-    },
-  },
-  icons = { collapsed = "", expanded = "", current_frame = "" },
-  layouts = {
-    {
-      elements = {
-        { id = "repl", size = 0.34 },
-        { id = "breakpoints", size = 0.33},
-        { id = "console", size = 0.33 },
-      },
-      position = "bottom",
-      size = 10,
-    },
-  },
-})
+-- dapui.setup({
+--   controls = {
+--     element = "repl",
+--     enabled = true,
+--   },
+--   floating = {
+--     border = "single",
+--     mappings = {
+--       close = { "q", "<Esc>" },
+--     },
+--   },
+--   icons = { collapsed = "", expanded = "", current_frame = "" },
+--   layouts = {
+--     {
+--       elements = {
+--         { id = "repl", size = 0.34 },
+--         { id = "breakpoints", size = 0.33},
+--         { id = "console", size = 0.33 },
+--       },
+--       position = "bottom",
+--       size = 10,
+--     },
+--   },
+-- })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
