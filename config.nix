@@ -23,7 +23,7 @@ in
       signcolumn = "number";
 
       fillchars.eob = " ";
-      fillchars.vert = "▕";
+      fillchars.vert = " ";
       ignorecase = true;
       langmap = "ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz,ㅃQ,ㅉW,ㄸE,ㄲR,ㅆT";
       termguicolors = true;
@@ -80,6 +80,7 @@ in
         variant = "main";
         styles.italic = false;
         highlight_groups = {
+          WinSeparator.fg.__raw = "require('rose-pine.palette').highlight_med";
           LineNrAbove.fg.__raw = "require('rose-pine.palette').highlight_med";
           LineNrBelow.fg.__raw = "require('rose-pine.palette').highlight_med";
           LineNr = {

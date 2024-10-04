@@ -260,7 +260,7 @@ in
                   local bufferTypeIgnored = { "help", "nofile" }
                   local bufferType = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
                   if vim.list_contains(bufferTypeIgnored, bufferType) then
-                    return "%#IblWhitespace#%   "
+                    return "%#WinSeparator#% ▏%#IblWhitespace#%   "
                   end
 
                 -- if segment.sign and segment.sign.wins[args.win].signs[args.lnum] then
@@ -271,7 +271,7 @@ in
                 local relnum = tostring(args.relnum)
                 local len = string.len(relnum)
                 local padLen = 2 - len
-                local pad = string.rep(" ", padLen)
+                local pad = string.rep("0", padLen)
                 local hlGroup 
                 
                 if args.relnum == 0 then
@@ -283,7 +283,7 @@ in
                 end
 
                 -- return " " .. require('statuscol.builtin').lnumfunc(args, segment) .. " %#LineNrAbove#% ▏ "
-                return " " .. pad .. relnum .. " %#LineNrAbove#% ▏ "
+                return "▏" .. pad .. relnum .. " %#LineNrAbove#% ▏ "
                 end
                 '';
               }
