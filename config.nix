@@ -94,6 +94,15 @@ in
             bg.__raw = "require('rose-pine.palette').gold";
             fg.__raw = "require('rose-pine.palette').base";
           };
+          CmpBorder = {
+            fg.__raw = "require('rose-pine.palette').text";
+          };
+          CmpPmenu = {
+            bg.__raw = "require('rose-pine.palette').base";
+          };
+          CmpSel = {
+            bg.__raw = "require('rose-pine.palette').highlight_med";
+          };
         };
       };
     };
