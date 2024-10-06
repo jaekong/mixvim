@@ -93,7 +93,7 @@ in
                 end,
                 once = true
               })
-              end, 10)
+              end, 50)
           else
             vim.api.nvim_feedkeys("\t", "n", false)
           end
