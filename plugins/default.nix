@@ -268,39 +268,42 @@ in
                   local bufferTypeIgnored = { "help", "nofile" }
                   local bufferType = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
                   if vim.list_contains(bufferTypeIgnored, bufferType) then
-                    return "%#WinSeparator#% ▏%#IblWhitespace#%   "
+                    return "%#WinSeparator# ▏%#IblWhitespace#   "
+                    end
+
+                  if segment.sign then
+                    vim.print(segment.sign)
                   end
 
-                -- if segment.sign and segment.sign.wins[args.win].signs[args.lnum] then
-                --   vim.notify(segment.sign.wins[args.win].signs[args.lnum])
-                --   return "AAA"
-                -- end
-                
-                local relnum = tostring(args.relnum)
-                local len = string.len(relnum)
-                local padLen = 2 - len
-                local pad = string.rep("0", padLen)
-                local hlGroup 
-                
-                if args.relnum == 0 then
-                  hlGroup = "%#LineNr#%"
-                elseif args.relnum > 0 then
-                  hlGroup = "%#LineNrAbove#%"
-                else
-                  hlGroup = "%#LineNrBelow#%"
-                end
+                  if segment.sign and segment.sign.wins[args.win].signs[args.lnum] then
+                    vim.print(segment.sign.wins[args.win].signs[args.lnum])
+                  end
+                  
+                  local relnum = tostring(args.relnum)
+                  local len = string.len(relnum)
+                  local padLen = 2 - len
+                  local pad = string.rep("0", padLen)
+                  local hlGroup 
+                  
+                  if args.relnum == 0 then
+                    hlGroup = "%#LineNr#"
+                  elseif args.relnum > 0 then
+                    hlGroup = "%#LineNrAbove#"
+                  else
+                    hlGroup = "%#LineNrBelow#"
+                  end
 
-                -- return " " .. require('statuscol.builtin').lnumfunc(args, segment) .. " %#LineNrAbove#% ▏ "
-                return "▏" .. pad .. relnum .. " %#LineNrAbove#% ▏ "
+                  -- return " " .. require('statuscol.builtin').lnumfunc(args, segment) .. " %#LineNrAbove#% ▏ "
+                  return hlGroup .. "%(▏" .. pad .. relnum .. "▕%)%#IblWhitespace#%( %)"
                 end
                 '';
               }
             ];
-            # sign = {
-            #   name = [ ".*" ];
-            #   auto = false;
-            #   wrap = false;
-            # };
+            sign = {
+              name = [ ".*" ];
+              auto = false;
+              wrap = false;
+            };
           }
         ];
         clickhandlers = {
