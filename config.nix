@@ -85,7 +85,7 @@ in
           LineNrBelow.fg.__raw = "require('rose-pine.palette').highlight_med";
           LineNr = {
             fg.__raw = "require('rose-pine.palette').base";
-            bg.__raw = "require('rose-pine.palette').foam";
+            bg.__raw = "require('rose-pine.palette').subtle";
           };
           DiagnosticSignError = {
             bg.__raw = "require('rose-pine.palette').love";
