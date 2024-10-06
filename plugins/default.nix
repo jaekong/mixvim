@@ -163,7 +163,15 @@ in
             single_file_support = true;
           };
         });
-        nil-ls.enable = true;
+        nil-ls = {
+          enable = true;
+          settings = {
+            nix.flake = {
+              autoArchive = true;
+              autoEvalInputs = true;
+            };
+          };
+        };
         lua-ls = {
           enable = true;
           settings = {
