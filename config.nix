@@ -22,10 +22,20 @@ in
       relativenumber = true;
       signcolumn = "number";
 
-      fillchars.eob = " ";
-      fillchars.vert = " ";
+      fillchars = {
+        eob = " ";
+
+        horizup = " ";
+        horizdown = " ";
+        vert = " ";
+        vertleft = " ";
+        vertright = " ";
+        verthoriz = " ";
+      };
+
       ignorecase = true;
       langmap = "ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz,ㅃQ,ㅉW,ㄸE,ㄲR,ㅆT";
+      laststatus = 3;
       termguicolors = true;
       virtualedit = "onemore";
       wildmode = "";
@@ -37,8 +47,8 @@ in
       function()
         return {
           text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 "
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " "
           },
           numhl = {
             [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
@@ -66,6 +76,16 @@ in
       (if rpcEnable then (builtins.readFile ./luaConfig/rpc.lua) else "")
       (builtins.readFile ./neovim.lua)
     ];
+
+    userCommands = {
+      Format = {
+        command = ''
+        function(args)
+          require("conform").format({ bufnr = args.buf })
+        end
+        '';
+      };
+    };
 
     performance = {
       byteCompileLua = {
