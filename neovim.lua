@@ -1,6 +1,6 @@
-require("smart-splits").setup({
-  at_edge = 'stop';
-})
+-- require("smart-splits").setup({
+--   at_edge = 'stop';
+-- })
 
 ---@return boolean
 local function at_top_edge()

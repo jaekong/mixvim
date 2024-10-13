@@ -19,7 +19,7 @@ in
     [
       camelcasemotion
       nui-nvim
-      smart-splits-nvim
+      # smart-splits-nvim
       neorepl-nvim
       hover-nvim
     ]
