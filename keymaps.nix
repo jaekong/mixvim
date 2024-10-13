@@ -77,19 +77,19 @@ in
           local trimmedLine = string.gsub(line, "%s+", "")
 
           if line == "" then
-            vim.g.tabOverride = false
+            vim.b.tabOverride = false
           end
 
-          if (trimmedLine == "") and (vim.g.tabOverride == nil or not vim.g.tabOverride) then
-            vim.g.tabOverride = true
+          if (trimmedLine == "") and (vim.b.tabOverride == nil or not vim.b.tabOverride) then
+            vim.b.tabOverride = true
             local escKeycode = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
             vim.api.nvim_feedkeys(escKeycode, "n", false)
             vim.api.nvim_feedkeys("cc", "n", false)
 
             vim.defer_fn(function()
-              vim.api.nvim_create_autocmd({"InsertLeave", "InsertCharPre"}, {
+              vim.api.nvim_create_autocmd({"InsertLeave", "InsertCharPre", "BufLeave"}, {
                 callback = function()
-                  vim.g.tabOverride = false
+                  vim.b.tabOverride = false
                 end,
                 once = true
               })
@@ -322,10 +322,17 @@ in
         mode = genericModes ++ [ "i" ];
       }
 
+      # Cmd + Shift + S
+      {
+        key = "<D-S-s>";
+        action = "<Cmd>wa<CR>";
+        mode = genericModes ++ [ "i" ];
+      }
+
       # Cmd + C
       {
         key = "<D-c>";
-        action = "<cmd>normal \"+y<cr>";
+        action = "\"+y";
         mode = genericModes;
       }
 
