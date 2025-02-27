@@ -35,8 +35,12 @@ in
     };
     better-escape.enable = true;
     bufdelete.enable = true;
+   
+    # Create Color Code
     ccc.enable = true;
     comment.enable = true;
+
+    # Formatter
     conform-nvim = {
       enable = true;
       settings = {
@@ -81,45 +85,47 @@ in
         };
       };
       extensions = {
-        dap-ui = {
-          enable = true;
-          controls = {
-            enabled = true;
-            element = "repl";
-          };
-          floating = {
-            border = "single";
-            mappings.close = [
-              "q"
-              "esc"
-            ];
-          };
-          icons = {
-            collapsed = "";
-            expanded = "";
-            current_frame = "";
-          };
-          layouts = [
-            {
-              elements = [
-                {
-                  id = "repl";
-                  size = 0.34;
-                }
-                {
-                  id = "breakpoints";
-                  size = 0.33;
-                }
-                {
-                  id = "console";
-                  size = 0.33;
-                }
-              ];
-              position = "bottom";
-              size = 10;
-            }
+      };
+    };
+    dap-ui = {
+      enable = true;
+      settings = {
+        controls = {
+          enabled = true;
+          element = "repl";
+        };
+        floating = {
+          border = "single";
+          mappings.close = [
+            "q"
+            "esc"
           ];
         };
+        icons = {
+          collapsed = "";
+          expanded = "";
+          current_frame = "";
+        };
+        layouts = [
+          {
+            elements = [
+              {
+                id = "repl";
+                size = 0.34;
+              }
+              {
+                id = "breakpoints";
+                size = 0.33;
+              }
+              {
+                id = "console";
+                size = 0.33;
+              }
+            ];
+            position = "bottom";
+            size = 10;
+          }
+        ];
       };
     };
     dressing.enable = true;
@@ -194,13 +200,17 @@ in
     lsp = {
       enable = true;
       capabilities = ''
-        capabilities.workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = true
-          }
-        }
+        capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
       '';
       servers = {
+        emmet_ls = {
+          enable = true;
+        };
+        somesass_ls = {
+          enable = true;
+          package = null;
+        };
         sourcekit = {
           enable = true;
           cmd = if xcodeEnable then [
@@ -213,7 +223,10 @@ in
             single_file_support = true;
           };
         };
-        nil-ls = {
+        svelte = {
+          enable = true;
+        };
+        nil_ls = {
           enable = true;
           settings = {
             nix.flake = {
@@ -222,13 +235,16 @@ in
             };
           };
         };
-        lua-ls = {
+        lua_ls = {
           enable = true;
           settings = {
             diagnostics = {
               globals = [ "vim" ];
             };
           };
+        };
+        ts_ls = {
+          enable = true;
         };
       };
     };
@@ -248,19 +264,17 @@ in
     };
     luasnip = {
       enable = true;
-      fromSnipmate = [
-        {
-          paths = ./luasnip/swift.snippets;
-          include = [ "swift" ];
-        }
-      ];
     };
     markview = {
-      enable = true;
+      enable = false;
     };
     nix.enable = true;
     notify = {
       enable = true;
+      settings = {
+        max_width = 50;
+        minimum_width = 40;
+      };
     };
     nvim-autopairs = {
       enable = true;

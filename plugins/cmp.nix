@@ -60,6 +60,7 @@
           "<C-up>" = "cmp.mapping.scroll_docs(-4)";
           "<C-down>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
+          "<esc>" = "cmp.mapping.abort()";
           "<CR>" = ''
           cmp.mapping({
             i = function(fallback)
@@ -81,6 +82,54 @@
           '';
           "<down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           "<up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<right>" = ''
+          cmp.mapping({
+            i = function(fallback)
+              local col = vim.fn.col(".") - 1
+              local line = vim.fn.getline(".")
+
+              if cmp.visible() and not (cmp.get_active_entry()) then
+                cmp.abort()
+              else
+                fallback()
+              end
+            end,
+            c = function(fallback)
+              local col = vim.fn.col(".") - 1
+              local line = vim.fn.getline(".")
+
+              if cmp.visible() and not (cmp.get_active_entry()) then
+                cmp.abort()
+              else
+                fallback()
+              end
+            end,
+          })
+          '';
+          "<D-right>" = ''
+          cmp.mapping({
+            i = function(fallback)
+              local col = vim.fn.col(".") - 1
+              local line = vim.fn.getline(".")
+
+              if cmp.visible() and not (cmp.get_active_entry()) then
+                cmp.abort()
+              else
+                fallback()
+              end
+            end,
+            c = function(fallback)
+              local col = vim.fn.col(".") - 1
+              local line = vim.fn.getline(".")
+
+              if cmp.visible() and not (cmp.get_active_entry()) then
+                cmp.abort()
+              else
+                fallback()
+              end
+            end,
+          })
+          '';
         };
         filetype = {
           TelescopePrompt = {

@@ -68,39 +68,39 @@ in
         action.__raw = "require('hover').hover";
         mode = genericModes;
       }
-      {
-        key = "<Tab>";
-        action.__raw = ''
-        function()
-          local col = vim.fn.col(".") - 1
-          local line = vim.fn.getline(".")
-          local trimmedLine = string.gsub(line, "%s+", "")
-
-          if line == "" then
-            vim.b.tabOverride = false
-          end
-
-          if (trimmedLine == "") and (vim.b.tabOverride == nil or not vim.b.tabOverride) then
-            vim.b.tabOverride = true
-            local escKeycode = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
-            vim.api.nvim_feedkeys(escKeycode, "n", false)
-            vim.api.nvim_feedkeys("cc", "n", false)
-
-            vim.defer_fn(function()
-              vim.api.nvim_create_autocmd({"InsertLeave", "InsertCharPre", "BufLeave"}, {
-                callback = function()
-                  vim.b.tabOverride = false
-                end,
-                once = true
-              })
-              end, 50)
-          else
-            vim.api.nvim_feedkeys("\t", "n", false)
-          end
-        end
-        '';
-        mode = "i";
-      }
+      # {
+      #   key = "<Tab>";
+      #   action.__raw = ''
+      #   function()
+      #     local col = vim.fn.col(".") - 1
+      #     local line = vim.fn.getline(".")
+      #     local trimmedLine = string.gsub(line, "%s+", "")
+      #
+      #     if (line == "") and (vim.b.tabOverride == nil) then
+      #       vim.b.tabOverride = false
+      #     end
+      #
+      #     if (trimmedLine == "") and (vim.b.tabOverride == nil or not vim.b.tabOverride) then
+      #       vim.b.tabOverride = true
+      #       local escKeycode = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+      #       vim.api.nvim_feedkeys(escKeycode, "n", false)
+      #       vim.api.nvim_feedkeys("cc", "n", false)
+      #
+      #       vim.defer_fn(function()
+      #         vim.api.nvim_create_autocmd({"InsertLeave", "InsertCharPre", "BufLeave"}, {
+      #           callback = function()
+      #             vim.b.tabOverride = false
+      #           end,
+      #           once = true
+      #         })
+      #         end, 50)
+      #     else
+      #       vim.api.nvim_feedkeys("\t", "n", false)
+      #     end
+      #   end
+      #   '';
+      #   mode = "i";
+      # }
 
       {
         key = "<leader>?";
@@ -126,6 +126,23 @@ in
         key = "|";
         options.desc = "Focus on File Browser";
         action = "<cmd>NvimTreeOpen<cr>";
+        mode = genericModes;
+      }
+
+      {
+        key = "<esc>";
+        action.__raw = ''
+        function()
+          local buftype = vim.bo.filetype
+          if (buftype == "NvimTree") then
+            vim.api.nvim_command("wincmd l")
+          end
+          if (buftype == "help") then
+            vim.api.nvim_command("bdelete")
+          end
+          vim.api.nvim_command("noh")
+        end
+        '';
         mode = genericModes;
       }
 
@@ -334,6 +351,18 @@ in
         key = "<D-c>";
         action = "\"+y";
         mode = genericModes;
+      }
+
+      # Cmd + A
+      {
+        key = "<D-a>";
+        action = "ggVG";
+        mode = genericModes;
+      }
+      {
+        key = "<D-a>";
+        action = "<esc>ggVG";
+        mode = "i";
       }
 
       # Shift + Movement

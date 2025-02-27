@@ -65,11 +65,12 @@ in
 
     extraConfigVim = ''
       language en_US.UTF-8
+      colorscheme mellow
 
       set equalalways
       set noshowmode
       set nowildmenu
-      '';
+    '';
 
     extraConfigLua = lib.strings.concatStrings [
       (if xcodeEnable then (builtins.readFile ./luaConfig/xcodebuild.lua) else "")
@@ -95,7 +96,7 @@ in
     };
 
     colorschemes.rose-pine = {
-      enable = true;
+      enable = false;
       settings = {
         variant = "main";
         styles.italic = false;

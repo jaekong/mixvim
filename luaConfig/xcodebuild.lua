@@ -12,8 +12,8 @@ xcodebuild.setup({
     },
     commands = {
       cache_devices = true,
-      extra_build_args = "-parallelizeTargets",
-      extra_test_args = "-parallelizeTargets",
+      extra_build_args = { "-parallelizeTargets" },
+      extra_test_args = { "-parallelizeTargets" },
       project_search_max_depth = 3,
       remote_debugger = nil,
       remote_debugger_port = 65123,
@@ -163,6 +163,9 @@ xcodebuild.setup({
         end,
       },
       quick = {
+        enabled = true,
+      },
+      pymobiledevice = {
         enabled = true,
       },
     },
