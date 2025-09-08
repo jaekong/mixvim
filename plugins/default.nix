@@ -204,6 +204,13 @@ in
         capabilities.textDocument.completion.completionItem.snippetSupport = true
       '';
       servers = {
+        clangd = {
+          enable = true;
+          filetypes = [
+            "c"
+            "cpp"
+          ];
+        };
         emmet_ls = {
           enable = true;
         };
@@ -213,12 +220,21 @@ in
         };
         sourcekit = {
           enable = true;
-          cmd = if xcodeEnable then [
-            "xcrun"
-            "sourcekit-lsp"
-          ] else [
-            "sourcekit-lsp"
-          ];
+          settings = {
+            cmd = if xcodeEnable then [
+              "xcrun"
+              "sourcekit-lsp"
+              # "--compilation-db-search-path"
+              # "./build"
+            ] else [
+              "sourcekit-lsp"
+              # "--compilation-db-search-path"
+              # "./build"
+            ];
+            root_markers = [
+              "compile_commands.json"
+            ];
+          };
           extraOptions = {
             single_file_support = true;
           };
@@ -250,15 +266,17 @@ in
     };
     lspkind = {
       enable = true;
-      mode = "symbol";
-      cmp = {
-        enable = true;
-        maxWidth = 30;
-        ellipsisChar = "…";
-        menu = {
-          nvim_lsp = "L";
-          treesitter = "T";
-          nvim_lua = "V";
+      settings = {
+        mode = "symbol";
+        cmp = {
+          enable = true;
+          max_width = 30;
+          ellipsi_char = "…";
+          menu = {
+            nvim_lsp = "L";
+            treesitter = "T";
+            nvim_lua = "V";
+          };
         };
       };
     };
@@ -291,8 +309,10 @@ in
     };
     nvim-tree = {
       enable = true;
-      diagnostics.enable = true;
-      trash.cmd = "rip";
+      settings = {
+        diagnostics.enable = true;
+        trash.cmd = "rip";
+      };
     };
     otter = {
       enable = false;

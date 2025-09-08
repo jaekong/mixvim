@@ -42,7 +42,7 @@ in
       wrap = false;
     };
 
-    diagnostics = {
+    diagnostic.settings = {
       signs.__raw = ''
       function()
         return {
@@ -65,7 +65,6 @@ in
 
     extraConfigVim = ''
       language en_US.UTF-8
-      colorscheme mellow
 
       set equalalways
       set noshowmode
@@ -90,13 +89,13 @@ in
 
     performance = {
       byteCompileLua = {
-        enable = true;
+        enable = false;
         plugins = true;
       };
     };
 
     colorschemes.rose-pine = {
-      enable = false;
+      enable = true;
       settings = {
         variant = "main";
         styles.italic = false;
