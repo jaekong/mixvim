@@ -259,6 +259,11 @@ in
             };
           };
         };
+        rust_analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+        };
         ts_ls = {
           enable = true;
         };
